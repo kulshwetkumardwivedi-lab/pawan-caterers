@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>पवन तिवारी कैटर्स - बिल</title>
+
+<style>
+@page {
+    size: A4;
+    margin: 8mm;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #eeeeee;
+    font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+    color: #111;
+}
+
+.app {
+    max-width: 900px;
+    margin: auto;
+    padding: 15px;
+}
+
+.screen {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.15);
+}
+
+h1 {
+    text-align: center;
+    margin: 0;
+    font-size: 28px;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.address {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.section-title {
+    background: #222;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    border-radius: 6px;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.item-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.item {
+    border: 1px solid #999;
+    padding: 7px;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+.item-name {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.item input {
+    width: 100%;
+    padding: 7px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 18px;
+}
+
+button {
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.next {
+    background: #16833b;
+    color: white;
+    width: 100%;
+}
+
+.back {
+    background: #555;
+    color: white;
+    width: 35%;
+}
+
+.generate {
+    background: #0b63ce;
+    color: white;
+    width: 65%;
+}
+
+.info-box {
+    border: 1px solid #aaa;
+    padding: 10px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.info-grid input {
+    width: 100%;
+    padding: 8px;
+    font-size: 15px;
+}
+
+.preview {
+    display: none;
+    margin-top: 15px;
+}
+
+.preview iframe {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #aaa;
+}
+
+.share {
+    background: #25D366;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.reset {
+    background: #b3261e;
+    color: white;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.pdf-page {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    padding: 8mm;
+    margin: auto;
+    font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+}
+
+.pdf-header {
+    text-align: center;
+    border-bottom: 2px solid #111;
+    padding-bottom: 7px;
+}
+
+.pdf-header h1 {
+    font-size: 25px;
+}
+
+.pdf-header p {
+    margin: 3px 0;
+    font-size: 13px;
+}
+
+.pdf-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    border: 1px solid #111;
+    margin-top: 8px;
+}
+
+.pdf-info div {
+    padding: 6px;
+    border-right: 1px solid #111;
+    font-size: 12px;
+}
+
+.pdf-info div:last-child {
+    border-right: none;
+}
+
+.pdf-section {
+    margin-top: 8px;
+}
+
+.pdf-section-title {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.pdf-items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-left: 1px solid #111;
+    border-top: 1px solid #111;
+}
+
+.pdf-item {
+    min-height: 28px;
+    padding: 4px;
+    border-right: 1px solid #111;
+    border-bottom: 1px solid #111;
+    font-size: 11px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pdf-item strong {
+    font-weight: normal;
+}
+
+.qty {
+    font-weight: bold;
+}
+
+.pdf-footer {
+    margin-top: 10px;
+    border: 1px solid #111;
+    padding: 7px;
+    font-size: 12px;
+}
+
+@media(max-width:700px) {
+    .item-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .pdf-page {
+        width: 100%;
+    }
+}
+
+@media print {
+    body {
+        background: white;
+    }
+
+    .app {
+        display: none;
+    }
+
+    .pdf-page {
+        display: block !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="screen">
+
+<div class="pdf-header">
+<h1>पवन तिवारी कैटर्स</h1>
+
+<div class="subtitle">
+मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+</div>
+
+<div class="address">
+ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़ मो. 7985303237
+</div>
+</div>
+
+<div class="info-box">
+
+<div class="info-grid">
+
+<div>
+<label>ऑर्डर दिनांक</label>
+<input type="date" id="orderDate">
+</div>
+
+<div>
+<label>कुल योग (रु)</label>
+<input type="number" id="totalAmount" placeholder="कुल योग">
+</div>
+
+<div>
+<label>जमा (रु)</label>
+<input type="number" id="deposit" placeholder="जमा">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= FIRST SECTION ================= -->
+
+<div class="section active" id="section1">
+
+<div class="section-title">
+पहला सेक्शन
+</div>
+
+<div class="item-grid" id="firstItems"></div>
+
+<div class="buttons">
+<button class="next" onclick="nextSection(2)">
+OK → अगला सेक्शन
+</button>
+</div>
+
+</div>
+
+
+<!-- ================= VEGETABLES ================= -->
+
+<div class="section" id="section2">
+
+<div class="section-title">
+सब्जियाँ
+</div>
+
+<div class="item-grid" id="vegetableItems"></div>
+
+<div class="buttons">
+<button class="back" onclick="nextSection(1)">
+← वापस
+</button>
+
+<button class="next" onclick="nextSection(3)">
+OK → अगला सेक्शन
+</button>
+</div>
+
+</div>
+
+
+<!-- ================= UTENSILS ================= -->
+
+<div class="section" id="section3">
+
+<div class="section-title">
+बर्तन
+</div>
+
+<div class="item-grid" id="utensilItems"></div>
+
+<div class="buttons">
+
+<button class="back" onclick="nextSection(2)">
+← वापस
+</button>
+
+<button class="generate" onclick="makePDF()">
+OK → PDF बनाएं
+</button>
+
+</div>
+
+</div>
+
+
+<div class="preview" id="preview">
+
+<h2>PDF Preview</h2>
+
+<iframe id="pdfFrame"></iframe>
+
+<button class="share" onclick="sharePDF()">
+📱 WhatsApp पर PDF Share करें
+</button>
+
+<button class="reset" onclick="location.reload()">
+नया बिल बनाएं
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- PDF TEMPLATE -->
+
+<div id="pdfContent" style="display:none;">
+
+<div class="pdf-page">
+
+<div class="pdf-header">
+
+<h1>पवन तिवारी कैटर्स</h1>
+
+<p>
+मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+</p>
+
+<p>
+ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़ मो. 7985303237
+</p>
+
+</div>
+
+
+<div class="pdf-info">
+
+<div>
+<strong>ऑर्डर दिनांक</strong><br>
+<span id="pdfDate"></span>
+</div>
+
+<div>
+<strong>कुल योग (रु)</strong><br>
+<span id="pdfTotal"></span>
+</div>
+
+<div>
+<strong>जमा (रु)</strong><br>
+<span id="pdfDeposit"></span>
+</div>
+
+<div>
+<strong>शेष (रु)</strong><br>
+<span id="pdfBalance"></span>
+</div>
+
+</div>
+
+
+<div class="pdf-section">
+
+<div class="pdf-section-title">
+पहला सेक्शन
+</div>
+
+<div class="pdf-items" id="pdfFirst"></div>
+
+</div>
+
+
+<div class="pdf-section">
+
+<div class="pdf-section-title">
+सब्जियाँ
+</div>
+
+<div class="pdf-items" id="pdfVegetables"></div>
+
+</div>
+
+
+<div class="pdf-section">
+
+<div class="pdf-section-title">
+बर्तन
+</div>
+
+<div class="pdf-items" id="pdfUtensils"></div>
+
+</div>
+
+
+<div class="pdf-footer">
+पवन तिवारी कैटर्स
+</div>
+
+</div>
+
+</div>
+
+
+<script src="html2pdf.bundle.min.js"></script>
+
+<script>
+
+/* =========================================================
+   FIRST SECTION ITEMS
+   ========================================================= */
+
+const firstItems = [
+
+"लाल चिकना खोवा",
+"सफेद चिकना खोवा",
+"सफेद लच्छेदार खोवा",
+"गाय का दूध",
+"भैंस का दूध",
+"चीनी",
+"घी रव",
+"इलायची छोटी",
+"हेड्रो",
+"लाल चेरी",
+"हरी चेरी",
+"पीली चेरी",
+"सेंट",
+"काजू टुकड़ा",
+"बदाम",
+"पिस्ता",
+"चिरौंजी",
+"छोटी बूंदी",
+"बड़ी बूंदी",
+"चाँदी वर्क",
+"बर्फ",
+"हल्दी पाउडर",
+"धनिया पाउडर",
+"शब्जी मसाला",
+"किचन किंग",
+"गरम मसाला पिसा",
+"मीट मसाला",
+"दमालू मसाला",
+"लाल मिर्च खड़ी",
+"पिसा लाल मिर्च",
+
+"काली मिर्च",
+"जीरा",
+"स्याह जीरा",
+"इलायची बड़ी",
+"अमचुर",
+"कबाबचिनी",
+"जायफर",
+"रीठा",
+"दाल चीनी",
+"जावित्री",
+"लौंग",
+"पुराना कपड़ा",
+"काली मिर्च",
+"तेजपत्ता",
+"कस्तूरी मेथी",
+"पोस्तादाना",
+"मेथी",
+"सौंफ",
+"अजवाइन",
+"बेकिंग पाउडर",
+"पिसी सौठ",
+"केशर",
+"काला नमक",
+"सादा नमक",
+"मंगरैल",
+"खड़ी धनिया",
+"पीपर",
+"हींग",
+"फिटकरी",
+"अरारोट",
+
+"दूध पाउडर",
+"लाल रंगछोटी",
+"पीला रंग",
+"हरा रंग",
+"तरबूज बीज",
+"खरबूज बीज",
+"नारियल बुरादा",
+"किशमिश",
+"चाय की पत्ती",
+"काफी पाउडर",
+"काफी मसाला",
+"केवड़ा जल",
+"पापड़",
+"कार्स्टेट पाउडर",
+"गुड़",
+"सूजी",
+"बेसून चना",
+"घुली दाल",
+"मूंग दाल",
+"कचौड़ी मसाला",
+"चना काबुली",
+"बासमती चावल",
+"राजमा",
+"खड़ा उर्द काला",
+"दही",
+"पनीर मसाला",
+"सरसों का तेल",
+"रिफाइन्ड",
+"मसूड़ खड़ी",
+"मूँगफली दाना",
+
+"अरहर दाल",
+"साभर मसाला",
+"अखरोट",
+"टोमैटो स्वास",
+"चिल्ली स्वास",
+"विनेगर",
+"मैदा",
+"मीठा सोडा",
+"साटरी",
+"छेना का पानी",
+"अजीना मोटो",
+"माचिस",
+"चाट मसाला",
+"कालीमिर्च पाउडर",
+"मखाना",
+"जीरा पाउडर",
+"पनीर",
+"मक्खन",
+"क्रीम",
+"देशी घी",
+"दही बड़ा मसाला",
+"रायता मसाला",
+"सोयाबीन चूर",
+"छोला मसाला",
+"भूना चना",
+"चीनी रवा",
+"केनको",
+"निरमा पाउडर",
+"आंटा",
+"मारकीन कपड़ा"
+
+];
+
+
+/* =========================================================
+   VEGETABLES
+   ========================================================= */
+
+const vegetables = [
+
+"हरी मेथी",
+"हरी धनिया",
+"हरा पुदीना",
+"हरा सोवा",
+"पालक",
+"बैगन लम्बा",
+"बैगन गोला",
+"भिण्डी छोटी",
+"प्याज",
+"लहसुन",
+"अदरक",
+"हरा मिर्चा",
+
+"नींबू",
+"मूली",
+"चुकन्दर",
+"गाजर",
+"टमाटर",
+"खीरा",
+"पत्तागोभी",
+"फूलगोभी",
+"आलू",
+"मटर दाना",
+"चौड़ी सेम",
+"सूरन",
+
+"मशरूम",
+"विन्स",
+"परवल",
+"लौकी",
+"कटहल",
+"सिमला मिर्च",
+"कोहड़ा",
+"इमली",
+"केला",
+"सेब",
+"पपीता",
+"अंगूर"
+
+];
+
+
+/* =========================================================
+   UTENSILS
+   ========================================================= */
+
+const utensils = [
+
+"चूल्हा",
+"तराजू",
+"सिलेंडर",
+"परात",
+"ड्रम",
+"बाल्टी",
+"तसला",
+"कड़ाही",
+"भगोना बड़ा",
+
+"भगोना छोटा",
+"ईटा",
+"खलबट्टा",
+"बांस की डलिया"
+
+];
+
+
+/* =========================================================
+   CREATE INPUTS
+   ========================================================= */
+
+function createItems(items, containerId, prefix) {
+
+    const container = document.getElementById(containerId);
+
+    items.forEach((name, index) => {
+
+        const div = document.createElement("div");
+
+        div.className = "item";
+
+        div.innerHTML = `
+            <div class="item-name">${name}</div>
+
+            <input
+                type="text"
+                id="${prefix}${index}"
+                placeholder="मात्रा / संख्या"
+inputmode="text"
+            >
+        `;
+
+        container.appendChild(div);
+
+    });
+}
+
+createItems(firstItems, "firstItems", "f");
+createItems(vegetables, "vegetableItems", "v");
+createItems(utensils, "utensilItems", "u");
+
+
+/* =========================================================
+   SECTION NAVIGATION
+   ========================================================= */
+
+function nextSection(number) {
+
+    document.querySelectorAll(".section").forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document.getElementById("section" + number)
+        .classList.add("active");
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+/* =========================================================
+   GET SELECTED ITEMS
+   ========================================================= */
+
+function getSelected(items, prefix) {
+
+    let result = [];
+
+    items.forEach((name, index) => {
+
+        const input = document.getElementById(prefix + index);
+
+        if (input && input.value.trim() !== "") {
+
+            result.push({
+                name: name,
+                qty: input.value.trim()
+            });
+
+        }
+
+    });
+
+    return result;
+}
+
+
+/* =========================================================
+   PUT ITEMS IN PDF
+   ========================================================= */
+
+function putPDFItems(containerId, items) {
+
+    const container = document.getElementById(containerId);
+
+    container.innerHTML = "";
+
+    if (items.length === 0) {
+
+        container.innerHTML = `
+            <div class="pdf-item">
+                कोई आइटम नहीं भरा गया
+            </div>
+        `;
+
+        return;
+    }
+
+    items.forEach(item => {
+
+        const div = document.createElement("div");
+
+        div.className = "pdf-item";
+
+        div.innerHTML = `
+            <strong>${item.name}</strong>
+            <span class="qty">${item.qty}</span>
+        `;
+
+        container.appendChild(div);
+
+    });
+}
+
+
+/* =========================================================
+   CREATE PDF
+   ========================================================= */
+
+let generatedPDFBlob = null;
+
+async function makePDF() {
+
+    const date = document.getElementById("orderDate").value;
+    const total = document.getElementById("totalAmount").value || "";
+    const deposit = document.getElementById("deposit").value || "";
+
+    let balance = "";
+
+    if (total !== "" && deposit !== "") {
+
+        balance =
+            Number(total) - Number(deposit);
+
+    }
+
+
+    document.getElementById("pdfDate").textContent =
+        date || "";
+
+    document.getElementById("pdfTotal").textContent =
+        total || "";
+
+    document.getElementById("pdfDeposit").textContent =
+        deposit || "";
+
+    document.getElementById("pdfBalance").textContent =
+        balance;
+
+
+    putPDFItems(
+        "pdfFirst",
+        getSelected(firstItems, "f")
+    );
+
+    putPDFItems(
+        "pdfVegetables",
+        getSelected(vegetables, "v")
+    );
+
+    putPDFItems(
+        "pdfUtensils",
+        getSelected(utensils, "u")
+    );
+
+
+    const element =
+        document.getElementById("pdfContent");
+
+    element.style.display = "block";
+
+
+    const options = {
+
+        margin: 0,
+
+        filename:
+            "Pawan_Tiwari_Caters_Bill.pdf",
+
+        image: {
+            type: "jpeg",
+            quality: 0.98
+        },
+
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#ffffff"
+        },
+
+        jsPDF: {
+            unit: "mm",
+            format: "a4",
+            orientation: "portrait"
+        }
+
+    };
+
+
+    try {
+
+        generatedPDFBlob =
+            await html2pdf()
+                .set(options)
+                .from(element)
+                .outputPdf("blob");
+
+
+        const pdfURL =
+            URL.createObjectURL(generatedPDFBlob);
+
+
+        document.getElementById("pdfFrame").src =
+            pdfURL;
+
+
+        document.getElementById("preview")
+            .style.display = "block";
+
+
+        document.querySelector(".screen")
+            .scrollIntoView({
+                behavior: "smooth"
+            });
+
+
+    } catch(error) {
+
+        alert(
+            "PDF बनाने में समस्या हुई: " +
+            error.message
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   WHATSAPP SHARE
+   ========================================================= */
+
+async function sharePDF() {
+
+    if (!generatedPDFBlob) {
+
+        alert("पहले PDF बनाएं।");
+
+        return;
+    }
+
+
+    const file = new File(
+        [generatedPDFBlob],
+        "Pawan_Tiwari_Caters_Bill.pdf",
+        {
+            type: "application/pdf"
+        }
+    );
+
+
+    try {
+
+        if (
+            navigator.share &&
+            navigator.canShare &&
+            navigator.canShare({ files: [file] })
+        ) {
+
+            await navigator.share({
+
+                title: "पवन तिवारी कैटर्स बिल",
+
+                text: "पवन तिवारी कैटर्स का बिल",
+
+                files: [file]
+
+            });
+
+        } else {
+
+            /* Fallback: PDF download */
+
+            const url =
+                URL.createObjectURL(generatedPDFBlob);
+
+            const a =
+                document.createElement("a");
+
+            a.href = url;
+
+            a.download =
+                "Pawan_Tiwari_Caters_Bill.pdf";
+
+            a.click();
+
+            URL.revokeObjectURL(url);
+
+            alert(
+                "इस browser में direct PDF sharing उपलब्ध नहीं है। PDF save हो गई है। अब इसे WhatsApp में attach कर सकते हैं।"
+            );
+
+        }
+
+    } catch(error) {
+
+        console.log(error);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
