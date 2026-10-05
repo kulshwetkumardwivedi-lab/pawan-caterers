@@ -4,328 +4,679 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>पवन तिवारी कैटर्स - बिल</title>
+<title>पवन तिवारी कैटर्स</title>
 
 <style>
-@page {
-    size: A4;
-    margin: 8mm;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-* {
-    box-sizing: border-box;
+html{
+    scroll-behavior:smooth;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    background: #eef3f8;
-    font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
-    color: #172033;
+body{
+    font-family:Arial,"Noto Sans Devanagari",sans-serif;
+    background:#f7f7f5;
+    color:#202020;
 }
 
-.app {
-    max-width: 900px;
-    margin: auto;
-    padding: 15px;
+/* ================= NAVBAR ================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(12px);
+    box-shadow:0 2px 15px rgba(0,0,0,.08);
 }
 
-.screen {
-    background: white;
-    padding: 18px;
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(24, 54, 93, .15);
+.nav{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
-h1 {
-    text-align: center;
-    margin: 0;
-    font-size: 28px;
-    color: #123c69;
+.logo{
+    font-size:20px;
+    font-weight:900;
+    color:#123c69;
 }
 
-.subtitle {
-    text-align: center;
-    font-size: 16px;
-    margin-top: 5px;
-    color: #40556d;
+.logo span{
+    color:#c99528;
 }
 
-.address {
-    text-align: center;
-    font-size: 14px;
-    margin-bottom: 15px;
-    color: #40556d;
+.nav-links{
+    display:flex;
+    gap:22px;
+    align-items:center;
 }
 
-.pdf-header {
-    text-align: center;
-    border-bottom: 2px solid #123c69;
-    padding-bottom: 7px;
+.nav-links a{
+    text-decoration:none;
+    color:#333;
+    font-weight:bold;
 }
 
-.pdf-header h1 {
-    font-size: 25px;
+.order-nav{
+    background:#123c69;
+    color:white!important;
+    padding:10px 17px;
+    border-radius:30px;
 }
 
-.pdf-header p {
-    margin: 3px 0;
-    font-size: 13px;
+/* ================= HERO ================= */
+
+.hero{
+    min-height:650px;
+
+    background:
+    linear-gradient(
+        rgba(0,25,45,.72),
+        rgba(0,25,45,.72)
+    ),
+    url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1800&q=85");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
 }
 
-.section {
-    display: none;
+.hero-content{
+    max-width:1200px;
+    width:100%;
+    margin:auto;
+    padding:40px 20px;
+    color:white;
 }
 
-.section.active {
-    display: block;
+.badge{
+    display:inline-block;
+    padding:9px 16px;
+    border-radius:30px;
+    background:rgba(255,255,255,.15);
+    border:1px solid rgba(255,255,255,.3);
+    margin-bottom:20px;
 }
 
-.section-title {
-    background: linear-gradient(135deg, #123c69, #176b87);
-    color: white;
-    padding: 10px;
-    text-align: center;
-    border-radius: 7px;
-    font-size: 21px;
-    margin-bottom: 12px;
-    box-shadow: 0 3px 8px rgba(18,60,105,.18);
+.hero h1{
+    font-size:clamp(42px,8vw,80px);
+    line-height:1.05;
+    max-width:800px;
 }
 
-.item-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+.hero h1 span{
+    color:#e1ad42;
 }
 
-.item {
-    border: 1px solid #c7d2df;
-    padding: 7px;
-    border-radius: 6px;
-    background: #f8fbfe;
-    transition: .2s;
+.hero p{
+    max-width:650px;
+    font-size:20px;
+    line-height:1.7;
+    margin-top:20px;
 }
 
-.item:focus-within {
-    border-color: #176b87;
-    box-shadow: 0 0 0 2px rgba(23,107,135,.12);
+.buttons{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
 }
 
-.item-name {
-    font-size: 15px;
-    margin-bottom: 5px;
-    color: #243b53;
+.btn{
+    display:inline-block;
+    border:none;
+    padding:14px 22px;
+    border-radius:12px;
+    font-weight:bold;
+    text-decoration:none;
+    cursor:pointer;
 }
 
-.item input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #aebdcb;
-    border-radius: 5px;
-    font-size: 14px;
-    background: white;
-    color: #172033;
+.btn-primary{
+    background:#d6a037;
+    color:#111;
 }
 
-.item input:focus {
-    outline: none;
-    border-color: #176b87;
-    box-shadow: 0 0 0 2px rgba(23,107,135,.12);
+.btn-white{
+    background:white;
+    color:#123c69;
 }
 
-.buttons {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 18px;
+/* ================= FEATURES ================= */
+
+.features{
+    max-width:1100px;
+    margin:-50px auto 0;
+    position:relative;
+    z-index:5;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+
+    padding:0 15px;
 }
 
-button {
-    border: none;
-    padding: 12px 20px;
-    border-radius: 7px;
-    font-size: 16px;
-    cursor: pointer;
-    font-family: inherit;
+.feature{
+    background:white;
+    padding:25px 15px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
 }
 
-.next {
-    background: #16833b;
-    color: white;
-    width: 100%;
+.feature-icon{
+    font-size:35px;
 }
 
-.next:active,
-.back:active,
-.generate:active,
-.share:active,
-.reset:active {
-    transform: scale(.98);
+.feature h3{
+    margin:10px 0 5px;
 }
 
-.back {
-    background: #536273;
-    color: white;
-    width: 35%;
+.feature p{
+    color:#666;
+    font-size:14px;
 }
 
-.generate {
-    background: #176b87;
-    color: white;
-    width: 65%;
+/* ================= COMMON ================= */
+
+.section{
+    padding:80px 18px;
 }
 
-.info-box {
-    border: 1px solid #c7d2df;
-    padding: 10px;
-    margin-bottom: 12px;
-    border-radius: 7px;
-    background: #f8fbfe;
+.container{
+    max-width:1150px;
+    margin:auto;
 }
 
-.info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
+.heading{
+    text-align:center;
+    margin-bottom:40px;
 }
 
-.info-grid input {
-    width: 100%;
-    padding: 8px;
-    font-size: 15px;
-    border: 1px solid #aebdcb;
-    border-radius: 5px;
+.heading small{
+    color:#c18c22;
+    font-weight:bold;
 }
 
-.info-grid input:focus {
-    outline: none;
-    border-color: #176b87;
+.heading h2{
+    color:#123c69;
+    font-size:42px;
+    margin:8px 0;
 }
 
-.preview {
-    display: none;
-    margin-top: 15px;
+.heading p{
+    color:#666;
 }
 
-.preview iframe {
-    width: 100%;
-    height: 600px;
-    border: 1px solid #aebdcb;
-    border-radius: 6px;
+/* ================= ORDER ================= */
+
+.order-section{
+    background:#fff;
 }
 
-.share {
-    background: #25D366;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
+.order-box{
+    background:white;
+    border-radius:25px;
+    padding:25px;
+    box-shadow:0 10px 40px rgba(0,0,0,.09);
 }
 
-.reset {
-    background: #b3261e;
-    color: white;
-    width: 100%;
-    margin-top: 10px;
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
 }
 
-.pdf-page {
-    width: 210mm;
-    min-height: 297mm;
-    background: white;
-    padding: 8mm;
-    margin: auto;
-    font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+.field label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:7px;
 }
 
-.pdf-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    border: 1px solid #111;
-    margin-top: 8px;
+.field input,
+.field textarea{
+    width:100%;
+    padding:13px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    outline:none;
 }
 
-.pdf-info div {
-    padding: 6px;
-    border-right: 1px solid #111;
-    font-size: 12px;
+.field textarea{
+    min-height:90px;
+    resize:vertical;
 }
 
-.pdf-info div:last-child {
-    border-right: none;
+.full{
+    grid-column:1/-1;
 }
 
-.pdf-section {
-    margin-top: 8px;
+/* ================= MENU ================= */
+
+.category-buttons{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:25px 0 15px;
 }
 
-.pdf-section-title {
-    background: #123c69;
-    color: white;
-    text-align: center;
-    padding: 5px;
-    font-size: 16px;
+.category-buttons button{
+    white-space:nowrap;
+    padding:10px 16px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    background:white;
+    font-weight:bold;
+    cursor:pointer;
 }
 
-.pdf-items {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-left: 1px solid #111;
-    border-top: 1px solid #111;
+.category-buttons button.active{
+    background:#123c69;
+    color:white;
 }
 
-.pdf-item {
-    min-height: 28px;
-    padding: 4px;
-    border-right: 1px solid #111;
-    border-bottom: 1px solid #111;
-    font-size: 11px;
-    display: flex;
-    justify-content: space-between;
-    gap: 5px;
+.food-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
 }
 
-.pdf-item strong {
-    font-weight: normal;
+.food-card{
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid #eee;
+    transition:.2s;
 }
 
-.qty {
-    font-weight: bold;
+.food-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(0,0,0,.12);
 }
 
-.pdf-footer {
-    margin-top: 10px;
-    border: 1px solid #111;
-    padding: 7px;
-    font-size: 12px;
+.food-image{
+    height:190px;
+    background-size:cover;
+    background-position:center;
 }
 
-@media(max-width:700px) {
+.food-info{
+    padding:17px;
+}
 
-    .item-grid {
-        grid-template-columns: repeat(2, 1fr);
+.food-info h3{
+    color:#123c69;
+    margin-bottom:6px;
+}
+
+.food-info p{
+    color:#777;
+    font-size:14px;
+    margin-bottom:15px;
+}
+
+.select-food{
+    width:100%;
+    padding:11px;
+    border:none;
+    border-radius:10px;
+    background:#edf3f7;
+    color:#123c69;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.select-food.selected{
+    background:#159957;
+    color:white;
+}
+
+/* ================= SELECTED ITEMS ================= */
+
+.selected-box{
+    margin-top:25px;
+    padding:20px;
+    border-radius:17px;
+    background:#f0f6fa;
+    display:none;
+}
+
+.selected-box.show{
+    display:block;
+}
+
+.selected-items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:12px 0;
+}
+
+.chip{
+    background:white;
+    border:1px solid #d8e0e5;
+    border-radius:30px;
+    padding:8px 12px;
+    font-size:14px;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+    background:#fff9ed;
+}
+
+.gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:14px;
+}
+
+.gallery-item{
+    height:240px;
+    border-radius:18px;
+    overflow:hidden;
+    background-size:cover;
+    background-position:center;
+    position:relative;
+}
+
+.gallery-item div{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:15px;
+    color:white;
+    font-weight:bold;
+    background:linear-gradient(transparent,rgba(0,0,0,.8));
+}
+
+/* ================= ABOUT ================= */
+
+.about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+
+.about-image{
+    min-height:420px;
+    border-radius:25px;
+
+    background:
+    url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=85")
+    center/cover;
+}
+
+.about h2{
+    color:#123c69;
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.about p{
+    color:#666;
+    line-height:1.8;
+}
+
+.points{
+    margin:20px 0;
+}
+
+.points div{
+    margin:10px 0;
+    font-weight:bold;
+}
+
+.points span{
+    color:#159957;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    background:linear-gradient(135deg,#123c69,#176b87);
+    color:white;
+}
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    padding:25px;
+}
+
+.contact-card h3{
+    margin-bottom:10px;
+}
+
+.contact-card p{
+    color:#dcebf5;
+    line-height:1.7;
+}
+
+/* ================= FOOTER ================= */
+
+.footer{
+    background:#0d263b;
+    color:#b9c8d3;
+    text-align:center;
+    padding:25px;
+}
+
+.admin-button{
+    background:none;
+    border:none;
+    color:white;
+    font-weight:bold;
+    text-decoration:underline;
+    cursor:pointer;
+    font-size:15px;
+}
+
+/* ================= BILL PAGE ================= */
+
+#billPage{
+    display:none;
+    min-height:100vh;
+    background:#eef3f8;
+}
+
+.bill-top{
+    background:#123c69;
+    color:white;
+    padding:15px 18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.bill-top button{
+    border:none;
+    border-radius:9px;
+    padding:9px 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.bill-container{
+    max-width:1050px;
+    margin:auto;
+    padding:20px;
+}
+
+.bill-header{
+    background:white;
+    text-align:center;
+    padding:25px;
+    border-radius:15px;
+}
+
+.bill-header h1{
+    color:#123c69;
+}
+
+.bill-header p{
+    margin-top:6px;
+    color:#555;
+}
+
+.bill-section{
+    background:white;
+    padding:18px;
+    margin-top:15px;
+    border-radius:14px;
+}
+
+.bill-section h2{
+    background:linear-gradient(135deg,#123c69,#176b87);
+    color:white;
+    padding:12px;
+    border-radius:9px;
+    margin-bottom:15px;
+}
+
+.bill-items{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:8px;
+}
+
+.bill-item{
+    display:grid;
+    grid-template-columns:1fr 150px;
+    gap:8px;
+    align-items:center;
+
+    border:1px solid #ddd;
+    padding:8px;
+    border-radius:8px;
+}
+
+.bill-item input{
+    width:100%;
+    padding:9px;
+    border:1px solid #ccc;
+    border-radius:7px;
+}
+
+.bill-actions{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.bill-btn{
+    border:none;
+    padding:13px 18px;
+    border-radius:10px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.bill-pdf{
+    background:#123c69;
+    color:white;
+}
+
+.bill-whatsapp{
+    background:#159957;
+    color:white;
+}
+
+.bill-clear{
+    background:#ddd;
+}
+
+@media(max-width:800px){
+
+    .nav-links a:not(.order-nav){
+        display:none;
     }
 
-    .info-grid {
-        grid-template-columns: 1fr;
+    .features{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .pdf-page {
-        width: 100%;
+    .food-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .gallery-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .contact-grid{
+        grid-template-columns:1fr;
     }
 }
 
-@media print {
+@media(max-width:550px){
 
-    body {
-        background: white;
+    .hero{
+        min-height:600px;
     }
 
-    .app {
-        display: none;
+    .hero p{
+        font-size:17px;
     }
 
-    .pdf-page {
-        display: block !important;
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+
+    .food-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .gallery-item{
+        height:180px;
+    }
+
+    .bill-items{
+        grid-template-columns:1fr;
+    }
+
+    .bill-item{
+        grid-template-columns:1fr;
+    }
+
+    .heading h2{
+        font-size:32px;
     }
 }
 </style>
@@ -333,235 +684,1093 @@ button {
 
 <body>
 
-<div class="app">
+<!-- =====================================================
+     CUSTOMER WEBSITE
+===================================================== -->
 
-<div class="screen">
+<div id="website">
 
-<div class="pdf-header">
+<!-- NAVBAR -->
 
-<h1>पवन तिवारी कैटर्स</h1>
+<nav class="navbar">
 
-<div class="subtitle">
-मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+<div class="nav">
+
+<div class="logo">
+🍽️ पवन <span>तिवारी कैटर्स</span>
 </div>
 
-<div class="address">
-ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़ मो. 7985303237
-</div>
+<div class="nav-links">
 
-</div>
+<a href="#menu">मेन्यू</a>
 
+<a href="#gallery">गैलरी</a>
 
-<div class="info-box">
+<a href="#contact">संपर्क</a>
 
-<div class="info-grid">
-
-<div>
-<label>ऑर्डर दिनांक</label>
-<input type="date" id="orderDate">
-</div>
-
-<div>
-<label>कुल योग (रु)</label>
-<input type="number" id="totalAmount" placeholder="कुल योग">
-</div>
-
-<div>
-<label>जमा (रु)</label>
-<input type="number" id="deposit" placeholder="जमा">
-</div>
+<a href="#order" class="order-nav">
+ऑर्डर करें
+</a>
 
 </div>
 
 </div>
 
+</nav>
 
-<!-- ================= FIRST SECTION ================= -->
 
-<div class="section active" id="section1">
+<!-- HERO -->
 
-<div class="section-title">
-पहला सेक्शन
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<div class="badge">
+शादी • तिलक • जन्मदिन • भंडारा
 </div>
 
-<div class="item-grid" id="firstItems"></div>
-
-<div class="buttons">
-
-<button class="next" onclick="nextSection(2)">
-OK → अगला सेक्शन
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= VEGETABLES ================= -->
-
-<div class="section" id="section2">
-
-<div class="section-title">
-सब्जियाँ
-</div>
-
-<div class="item-grid" id="vegetableItems"></div>
-
-<div class="buttons">
-
-<button class="back" onclick="nextSection(1)">
-← वापस
-</button>
-
-<button class="next" onclick="nextSection(3)">
-OK → अगला सेक्शन
-</button>
-
-</div>
-
-</div>
-
-
-<!-- ================= UTENSILS ================= -->
-
-<div class="section" id="section3">
-
-<div class="section-title">
-बर्तन
-</div>
-
-<div class="item-grid" id="utensilItems"></div>
-
-<div class="buttons">
-
-<button class="back" onclick="nextSection(2)">
-← वापस
-</button>
-
-<button class="generate" onclick="makePDF()">
-OK → PDF बनाएं
-</button>
-
-</div>
-
-</div>
-
-
-<div class="preview" id="preview">
-
-<h2>PDF Preview</h2>
-
-<iframe id="pdfFrame"></iframe>
-
-<button class="share" onclick="sharePDF()">
-📱 WhatsApp पर PDF Share करें
-</button>
-
-<button class="reset" onclick="location.reload()">
-नया बिल बनाएं
-</button>
-
-</div>
-
-</div>
-</div>
-
-
-<!-- ================= PDF TEMPLATE ================= -->
-
-<div id="pdfContent" style="display:none;">
-
-<div class="pdf-page">
-
-<div class="pdf-header">
-
-<h1>पवन तिवारी कैटर्स</h1>
+<h1>
+आपका अवसर,<br>
+<span>हमारा स्वाद।</span>
+</h1>
 
 <p>
-मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+आपके खास अवसर के लिए स्वादिष्ट भोजन,
+बेहतरीन तैयारी और पूरी कैटरिंग व्यवस्था।
 </p>
 
+<div class="buttons">
+
+<a href="#order" class="btn btn-primary">
+🛒 अभी ऑर्डर करें
+</a>
+
+<a href="#menu" class="btn btn-white">
+🍽️ मेन्यू देखें
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<div class="features">
+
+<div class="feature">
+<div class="feature-icon">🍲</div>
+<h3>स्वादिष्ट भोजन</h3>
+<p>हर अवसर के अनुसार</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">👨‍🍳</div>
+<h3>अनुभवी टीम</h3>
+<p>बेहतर तैयारी</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">✨</div>
+<h3>साफ-सुथरी सेवा</h3>
+<p>गुणवत्ता पर ध्यान</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📅</div>
+<h3>बुकिंग सुविधा</h3>
+<p>पहले से ऑर्डर करें</p>
+</div>
+
+</div>
+
+
+<!-- =====================================================
+     ORDER SECTION
+===================================================== -->
+
+<section class="section order-section" id="order">
+
+<div class="container">
+
+<div class="heading">
+
+<small>ONLINE BOOKING</small>
+
+<h2>ऑर्डर करें</h2>
+
 <p>
-ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़ मो. 7985303237
+अपने कार्यक्रम की जानकारी भरें और अपनी पसंद के कई भोजन चुनें।
 </p>
 
 </div>
 
 
-<div class="pdf-info">
+<div class="order-box">
+
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>
+कार्य / Event का नाम
+</label>
+
+<input
+id="eventName"
+placeholder="जैसे शादी, तिलक, जन्मदिन"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+कार्य की तारीख
+</label>
+
+<input
+id="eventDate"
+type="date"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+कुल मेहमान
+</label>
+
+<input
+id="guestCount"
+type="number"
+min="1"
+placeholder="जैसे 150"
+>
+
+</div>
+
+
+<div class="field">
+
+<label>
+आपका नाम
+</label>
+
+<input
+id="customerName"
+placeholder="नाम"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+कार्य का स्थान
+</label>
+
+<input
+id="eventPlace"
+placeholder="जहाँ कार्यक्रम होना है"
+>
+
+</div>
+
+
+<div class="field full">
+
+<label>
+विशेष आवश्यकता
+</label>
+
+<textarea
+id="customerNote"
+placeholder="कोई विशेष भोजन या अन्य आवश्यकता"
+></textarea>
+
+</div>
+
+</div>
+
+
+<!-- CATEGORY -->
+
+<div
+class="category-buttons"
+id="categoryButtons">
+</div>
+
+
+<!-- FOOD -->
+
+<div
+class="food-grid"
+id="orderMenu">
+</div>
+
+
+<!-- SELECTED -->
+
+<div
+class="selected-box"
+id="selectedBox">
+
+<b>
+आपने ये भोजन चुने हैं:
+</b>
+
+<div
+class="selected-items"
+id="selectedItems">
+</div>
+
+<button
+class="btn btn-primary"
+style="width:100%;margin-top:10px"
+onclick="sendOrder()">
+
+📲 WhatsApp पर ऑर्डर भेजें
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     MENU
+===================================================== -->
+
+<section class="section" id="menu">
+
+<div class="container">
+
+<div class="heading">
+
+<small>OUR MENU</small>
+
+<h2>हमारा मेन्यू</h2>
+
+<p>
+अपने कार्यक्रम के अनुसार स्वादिष्ट भोजन चुनें।
+</p>
+
+</div>
+
+<div
+class="food-grid"
+id="publicMenu">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section class="section gallery" id="gallery">
+
+<div class="container">
+
+<div class="heading">
+
+<small>FOOD GALLERY</small>
+
+<h2>भोजन की झलक</h2>
+
+<p>
+हमारे भोजन और कैटरिंग की कुछ झलक।
+</p>
+
+</div>
+
+<div
+class="gallery-grid"
+id="galleryGrid">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="section">
+
+<div class="container about-grid">
+
+<div class="about-image">
+</div>
+
+<div class="about">
+
+<small style="color:#c18c22;font-weight:bold">
+हमारे बारे में
+</small>
+
+<h2>
+हर समारोह को यादगार बनाएं
+</h2>
+
+<p>
+पवन तिवारी कैटर्स में आपके कार्यक्रम के अनुसार
+भोजन और कैटरिंग व्यवस्था की जाती है।
+हमारा उद्देश्य है कि आपके मेहमानों को
+स्वादिष्ट भोजन और अच्छी सेवा मिले।
+</p>
+
+<div class="points">
 
 <div>
-<strong>ऑर्डर दिनांक</strong><br>
-<span id="pdfDate"></span>
+<span>✓</span>
+कार्यक्रम के अनुसार भोजन
 </div>
 
 <div>
-<strong>कुल योग (रु)</strong><br>
-<span id="pdfTotal"></span>
+<span>✓</span>
+कई प्रकार के व्यंजनों का विकल्प
 </div>
 
 <div>
-<strong>जमा (रु)</strong><br>
-<span id="pdfDeposit"></span>
+<span>✓</span>
+शादी और अन्य शुभ अवसर
 </div>
 
 <div>
-<strong>शेष (रु)</strong><br>
-<span id="pdfBalance"></span>
+<span>✓</span>
+WhatsApp से आसान बुकिंग
 </div>
 
 </div>
 
+<a
+href="#order"
+class="btn btn-primary">
 
-<div class="pdf-section">
+अपना ऑर्डर बनाएं
 
-<div class="pdf-section-title">
-पहला सेक्शन
-</div>
-
-<div class="pdf-items" id="pdfFirst"></div>
-
-</div>
-
-
-<div class="pdf-section">
-
-<div class="pdf-section-title">
-सब्जियाँ
-</div>
-
-<div class="pdf-items" id="pdfVegetables"></div>
+</a>
 
 </div>
 
-
-<div class="pdf-section">
-
-<div class="pdf-section-title">
-बर्तन
 </div>
 
-<div class="pdf-items" id="pdfUtensils"></div>
+</section>
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section
+class="section contact"
+id="contact">
+
+<div class="container">
+
+<div class="heading">
+
+<small style="color:#e1ad42">
+CONTACT
+</small>
+
+<h2 style="color:white">
+संपर्क करें
+</h2>
+
+<p style="color:#dcebf5">
+कैटरिंग के लिए अभी संपर्क करें।
+</p>
 
 </div>
 
 
-<div class="pdf-footer">
+<div class="contact-grid">
+
+<div class="contact-card">
+
+<h3>
+📞 फोन / WhatsApp
+</h3>
+
+<p>
+7985303237
+</p>
+
+<a
+class="btn btn-primary"
+href="https://wa.me/917985303237">
+
+WhatsApp करें
+
+</a>
+
+</div>
+
+
+<div class="contact-card">
+
+<h3>
+📍 पता
+</h3>
+
+<p>
+ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़
+</p>
+
+</div>
+
+
+<div class="contact-card">
+
+<h3>
+🎉 कार्यक्रम
+</h3>
+
+<p>
+शादी, तिलक, जन्मदिन,
+भंडारा और अन्य शुभ अवसर।
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+<div>
+
+©
+
+<button
+class="admin-button"
+onclick="openBill()">
+
 पवन तिवारी कैटर्स
+
+</button>
+
+</div>
+
+<div style="font-size:12px;margin-top:6px">
+
+सभी अधिकार सुरक्षित
+
+</div>
+
+</footer>
+
+</div>
+
+
+
+<!-- =====================================================
+     BILL SECTION
+     FOOTER CLICK SE OPEN HOGA
+===================================================== -->
+
+<div id="billPage">
+
+
+<div class="bill-top">
+
+<strong>
+🧾 बिल बनाने का पैनल
+</strong>
+
+<button onclick="closeBill()">
+← वेबसाइट पर वापस
+</button>
+
+</div>
+
+
+<div class="bill-container">
+
+
+<div class="bill-header">
+
+<h1>
+पवन तिवारी कैटर्स
+</h1>
+
+<p>
+मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+</p>
+
+<p>
+ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़
+मो. 7985303237
+</p>
+
+</div>
+
+
+<!-- FIRST ITEMS -->
+
+<div class="bill-section">
+
+<h2>
+पहला सामान
+</h2>
+
+<div
+class="bill-items"
+id="firstItems">
 </div>
 
 </div>
 
+
+<!-- VEGETABLES -->
+
+<div class="bill-section">
+
+<h2>
+सब्जियाँ
+</h2>
+
+<div
+class="bill-items"
+id="vegetables">
+</div>
+
 </div>
 
 
-<script src="html2pdf.bundle.min.js"></script>
+<!-- UTENSILS -->
+
+<div class="bill-section">
+
+<h2>
+बर्तन / सामान
+</h2>
+
+<div
+class="bill-items"
+id="utensils">
+</div>
+
+</div>
+
+
+<div class="bill-actions">
+
+<button
+class="bill-btn bill-pdf"
+onclick="generateBill()">
+
+📄 PDF बनाएं
+
+</button>
+
+
+<button
+class="bill-btn bill-whatsapp"
+onclick="sendBillWhatsApp()">
+
+📲 WhatsApp
+
+</button>
+
+
+<button
+class="bill-btn bill-clear"
+onclick="clearBill()">
+
+↻ साफ करें
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+
 
 <script>
 
-/* =========================================================
-   FIRST SECTION ITEMS
-   ========================================================= */
+/* =====================================================
+   CUSTOMER MENU
+===================================================== */
+
+const menuItems = [
+
+{
+name:"शाही पनीर",
+category:"सब्जियाँ",
+description:"मलाईदार और स्वादिष्ट पनीर",
+image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"कचौड़ी",
+category:"पूड़ी / कचौड़ी",
+description:"गरमा-गरम मसालेदार कचौड़ी",
+image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"पूरी",
+category:"पूड़ी / कचौड़ी",
+description:"ताज़ी और गरमा-गरम पूरी",
+image:"https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"मिक्स सब्जी",
+category:"सब्जियाँ",
+description:"ताज़ी सब्जियों से तैयार",
+image:"https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"दाल",
+category:"दाल / चावल",
+description:"पारंपरिक स्वाद वाली दाल",
+image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"जीरा राइस",
+category:"दाल / चावल",
+description:"खुशबूदार चावल",
+image:"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"रायता",
+category:"रायता / सलाद",
+description:"ठंडा और स्वादिष्ट रायता",
+image:"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=85"
+},
+
+{
+name:"मिठाई",
+category:"मिठाई",
+description:"कार्यक्रम के अनुसार मिठाई",
+image:"https://images.unsplash.com/photo-1605196560547-1c2f6c3c6f7f?auto=format&fit=crop&w=800&q=85"
+}
+
+];
+
+
+let selectedFoods = new Set();
+
+let currentCategory = "सभी";
+
+
+const categories = [
+
+"सभी",
+
+...new Set(
+menuItems.map(item => item.category)
+)
+
+];
+
+
+/* CATEGORY BUTTONS */
+
+function createCategories(){
+
+const box =
+document.getElementById(
+"categoryButtons"
+);
+
+box.innerHTML =
+categories.map(category => `
+
+<button
+class="${category === currentCategory ? "active" : ""}"
+onclick="changeCategory('${category}')">
+
+${category}
+
+</button>
+
+`).join("");
+
+}
+
+
+function changeCategory(category){
+
+currentCategory = category;
+
+createCategories();
+
+displayOrderMenu();
+
+}
+
+
+/* FOOD CARD */
+
+function createFoodCard(item, selectable){
+
+const selected =
+selectedFoods.has(item.name);
+
+return `
+
+<div class="food-card">
+
+<div
+class="food-image"
+style="background-image:url('${item.image}')">
+</div>
+
+<div class="food-info">
+
+<h3>
+${item.name}
+</h3>
+
+<p>
+${item.description}
+</p>
+
+${
+selectable
+?
+
+`<button
+class="select-food ${selected ? "selected" : ""}"
+onclick="toggleFood('${item.name}')">
+
+${selected ? "✓ चुना गया" : "+ भोजन चुनें"}
+
+</button>`
+
+:
+
+""
+
+}
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ORDER MENU */
+
+function displayOrderMenu(){
+
+const box =
+document.getElementById(
+"orderMenu"
+);
+
+const filtered =
+currentCategory === "सभी"
+
+?
+menuItems
+
+:
+menuItems.filter(
+item =>
+item.category === currentCategory
+);
+
+box.innerHTML =
+filtered
+.map(item =>
+createFoodCard(item,true)
+)
+.join("");
+
+}
+
+
+/* PUBLIC MENU */
+
+function displayPublicMenu(){
+
+const box =
+document.getElementById(
+"publicMenu"
+);
+
+box.innerHTML =
+menuItems
+.map(item =>
+createFoodCard(item,false)
+)
+.join("");
+
+}
+
+
+/* SELECT FOOD */
+
+function toggleFood(name){
+
+if(selectedFoods.has(name)){
+
+selectedFoods.delete(name);
+
+}else{
+
+selectedFoods.add(name);
+
+}
+
+displayOrderMenu();
+
+showSelected();
+
+}
+
+
+/* SELECTED FOOD */
+
+function showSelected(){
+
+const box =
+document.getElementById(
+"selectedBox"
+);
+
+const list =
+document.getElementById(
+"selectedItems"
+);
+
+if(selectedFoods.size === 0){
+
+box.classList.remove("show");
+
+return;
+
+}
+
+box.classList.add("show");
+
+list.innerHTML =
+[...selectedFoods]
+.map(
+food =>
+
+`<span class="chip">
+${food}
+</span>`
+
+)
+.join("");
+
+}
+
+
+/* SEND ORDER */
+
+function sendOrder(){
+
+if(selectedFoods.size === 0){
+
+alert(
+"कृपया कम से कम एक भोजन चुनें।"
+);
+
+return;
+
+}
+
+
+const event =
+document
+.getElementById("eventName")
+.value
+.trim();
+
+const date =
+document
+.getElementById("eventDate")
+.value;
+
+const guests =
+document
+.getElementById("guestCount")
+.value;
+
+const name =
+document
+.getElementById("customerName")
+.value
+.trim();
+
+const place =
+document
+.getElementById("eventPlace")
+.value
+.trim();
+
+const note =
+document
+.getElementById("customerNote")
+.value
+.trim();
+
+
+if(!event || !date || !guests){
+
+alert(
+"कृपया कार्य का नाम, तारीख और मेहमानों की संख्या भरें।"
+);
+
+return;
+
+}
+
+
+const foods =
+[...selectedFoods]
+.map(
+(food,index)=>
+`${index+1}. ${food}`
+)
+.join("\n");
+
+
+const message =
+
+`नमस्ते पवन तिवारी कैटर्स,
+
+मुझे कैटरिंग के लिए ऑर्डर/पूछताछ करनी है।
+
+कार्य: ${event}
+
+तारीख: ${date}
+
+मेहमान: ${guests}
+
+नाम: ${name || "—"}
+
+स्थान: ${place || "—"}
+
+चुने हुए भोजन:
+
+${foods}
+
+विशेष आवश्यकता:
+${note || "कोई नहीं"}
+
+कृपया उपलब्धता और कीमत की जानकारी दें।`;
+
+
+window.location.href =
+"https://wa.me/917985303237?text="
++
+encodeURIComponent(message);
+
+}
+
+
+/* =====================================================
+   GALLERY
+===================================================== */
+
+const gallery = [
+
+[
+"शादी का भोजन",
+"https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=900&q=85"
+],
+
+[
+"पनीर व्यंजन",
+"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=900&q=85"
+],
+
+[
+"कचौड़ी",
+"https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85"
+],
+
+[
+"भारतीय भोजन",
+"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=900&q=85"
+],
+
+[
+"पूरी-सब्जी",
+"https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=900&q=85"
+],
+
+[
+"दाल-चावल",
+"https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85"
+]
+
+];
+
+
+function displayGallery(){
+
+document.getElementById(
+"galleryGrid"
+).innerHTML =
+
+gallery.map(item => `
+
+<div
+class="gallery-item"
+style="background-image:url('${item[1]}')">
+
+<div>
+${item[0]}
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =====================================================
+   BILL DATA
+===================================================== */
 
 const firstItems = [
 
@@ -607,7 +1816,6 @@ const firstItems = [
 "जावित्री",
 "लौंग",
 "पुराना कपड़ा",
-"काली मिर्च",
 "तेजपत्ता",
 "कस्तूरी मेथी",
 "पोस्तादाना",
@@ -689,10 +1897,6 @@ const firstItems = [
 ];
 
 
-/* =========================================================
-   VEGETABLES
-   ========================================================= */
-
 const vegetables = [
 
 "हरी मेथी",
@@ -735,10 +1939,6 @@ const vegetables = [
 ];
 
 
-/* =========================================================
-   UTENSILS
-   ========================================================= */
-
 const utensils = [
 
 "चूल्हा",
@@ -758,370 +1958,414 @@ const utensils = [
 ];
 
 
-/* =========================================================
-   CREATE INPUTS
-   ========================================================= */
+/* CREATE BILL INPUTS */
 
-function createItems(items, containerId, prefix) {
+function createBillItems(
+items,
+containerId,
+prefix
+){
 
-    const container = document.getElementById(containerId);
+const container =
+document.getElementById(
+containerId
+);
 
-    items.forEach((name, index) => {
+items.forEach(
+(item,index)=>{
 
-        const div = document.createElement("div");
+const div =
+document.createElement("div");
 
-        div.className = "item";
+div.className =
+"bill-item";
 
-        div.innerHTML = `
-            <div class="item-name">${name}</div>
+div.innerHTML = `
 
-            <input
-                type="text"
-                id="${prefix}${index}"
-                placeholder="जैसे 5 kg, 500 g, 10 पीस"
-                inputmode="text"
-            >
-        `;
+<span>
+${item}
+</span>
 
-        container.appendChild(div);
+<input
+type="text"
+id="${prefix}${index}"
+placeholder="मात्रा / संख्या"
+>
 
-        const input = div.querySelector("input");
+`;
 
-        /* Enter = अगले input पर जाना */
+container.appendChild(div);
 
-        input.addEventListener("keydown", function(event) {
-
-            if (event.key === "Enter") {
-
-                event.preventDefault();
-
-                const allInputs = Array.from(
-                    document.querySelectorAll(".section.active input")
-                );
-
-                const currentIndex =
-                    allInputs.indexOf(input);
-
-                const nextInput =
-                    allInputs[currentIndex + 1];
-
-                if (nextInput) {
-
-                    nextInput.focus();
-
-                    nextInput.scrollIntoView({
-                        behavior: "smooth",
-                        block: "center"
-                    });
-
-                }
-
-            }
-
-        });
-
-    });
+}
+);
 
 }
 
 
-createItems(firstItems, "firstItems", "f");
-createItems(vegetables, "vegetableItems", "v");
-createItems(utensils, "utensilItems", "u");
+/* =====================================================
+   OPEN BILL
+===================================================== */
 
+function openBill(){
 
-/* =========================================================
-   SECTION NAVIGATION
-   ========================================================= */
+document.getElementById(
+"website"
+).style.display="none";
 
-function nextSection(number) {
+document.getElementById(
+"billPage"
+).style.display="block";
 
-    document.querySelectorAll(".section").forEach(section => {
-        section.classList.remove("active");
-    });
-
-    document.getElementById("section" + number)
-        .classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+window.scrollTo(0,0);
 
 }
 
 
-/* =========================================================
-   GET SELECTED ITEMS
-   ========================================================= */
+/* CLOSE BILL */
 
-function getSelected(items, prefix) {
+function closeBill(){
 
-    let result = [];
+document.getElementById(
+"billPage"
+).style.display="none";
 
-    items.forEach((name, index) => {
+document.getElementById(
+"website"
+).style.display="block";
 
-        const input =
-            document.getElementById(prefix + index);
-
-        if (input && input.value.trim() !== "") {
-
-            result.push({
-                name: name,
-                qty: input.value.trim()
-            });
-
-        }
-
-    });
-
-    return result;
+window.scrollTo(0,0);
 
 }
 
 
-/* =========================================================
-   PUT ITEMS IN PDF
-   ========================================================= */
+/* CLEAR BILL */
 
-function putPDFItems(containerId, items) {
+function clearBill(){
 
-    const container =
-        document.getElementById(containerId);
-
-    container.innerHTML = "";
-
-    if (items.length === 0) {
-
-        container.innerHTML = `
-            <div class="pdf-item">
-                कोई आइटम नहीं भरा गया
-            </div>
-        `;
-
-        return;
-    }
-
-    items.forEach(item => {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "pdf-item";
-
-        div.innerHTML = `
-            <strong>${item.name}</strong>
-            <span class="qty">${item.qty}</span>
-        `;
-
-        container.appendChild(div);
-
-    });
+document
+.querySelectorAll("#billPage input")
+.forEach(input=>{
+input.value="";
+});
 
 }
 
 
-/* =========================================================
-   CREATE PDF
-   ========================================================= */
+/* COLLECT BILL */
 
-let generatedPDFBlob = null;
+function collectItems(
+items,
+prefix
+){
 
-async function makePDF() {
+const result=[];
 
-    const date =
-        document.getElementById("orderDate").value;
+items.forEach(
+(item,index)=>{
 
-    const total =
-        document.getElementById("totalAmount").value || "";
+const input =
+document.getElementById(
+prefix+index
+);
 
-    const deposit =
-        document.getElementById("deposit").value || "";
+if(
+input &&
+input.value.trim() !== ""
+){
 
-    let balance = "";
+result.push({
+name:item,
+value:input.value.trim()
+});
 
-    if (total !== "" && deposit !== "") {
+}
 
-        balance =
-            Number(total) - Number(deposit);
+});
 
-    }
-
-
-    document.getElementById("pdfDate").textContent =
-        date || "";
-
-    document.getElementById("pdfTotal").textContent =
-        total || "";
-
-    document.getElementById("pdfDeposit").textContent =
-        deposit || "";
-
-    document.getElementById("pdfBalance").textContent =
-        balance;
-
-
-    putPDFItems(
-        "pdfFirst",
-        getSelected(firstItems, "f")
-    );
-
-    putPDFItems(
-        "pdfVegetables",
-        getSelected(vegetables, "v")
-    );
-
-    putPDFItems(
-        "pdfUtensils",
-        getSelected(utensils, "u")
-    );
-
-
-    const element =
-        document.getElementById("pdfContent");
-
-    element.style.display = "block";
-
-
-    const options = {
-
-        margin: 0,
-
-        filename:
-            "Pawan_Tiwari_Caters_Bill.pdf",
-
-        image: {
-            type: "jpeg",
-            quality: 0.98
-        },
-
-        html2canvas: {
-            scale: 2,
-            useCORS: true,
-            backgroundColor: "#ffffff"
-        },
-
-        jsPDF: {
-            unit: "mm",
-            format: "a4",
-            orientation: "portrait"
-        }
-
-    };
-
-
-    try {
-
-        generatedPDFBlob =
-            await html2pdf()
-                .set(options)
-                .from(element)
-                .outputPdf("blob");
-
-
-        const pdfURL =
-            URL.createObjectURL(generatedPDFBlob);
-
-
-        document.getElementById("pdfFrame").src =
-            pdfURL;
-
-
-        document.getElementById("preview")
-            .style.display = "block";
-
-
-        document.querySelector(".screen")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-
-    } catch(error) {
-
-        alert(
-            "PDF बनाने में समस्या हुई: " +
-            error.message
-        );
-
-    }
+return result;
 
 }
 
 
-/* =========================================================
-   WHATSAPP SHARE
-   ========================================================= */
+/* =====================================================
+   BILL PDF
+===================================================== */
 
-async function sharePDF() {
+function generateBill(){
 
-    if (!generatedPDFBlob) {
+const groups=[
 
-        alert("पहले PDF बनाएं।");
+{
+title:"पहला सामान",
+items:collectItems(
+firstItems,
+"f"
+)
+},
 
-        return;
-    }
+{
+title:"सब्जियाँ",
+items:collectItems(
+vegetables,
+"v"
+)
+},
+
+{
+title:"बर्तन / सामान",
+items:collectItems(
+utensils,
+"u"
+)
+}
+
+];
 
 
-    const file = new File(
-        [generatedPDFBlob],
-        "Pawan_Tiwari_Caters_Bill.pdf",
-        {
-            type: "application/pdf"
-        }
-    );
+let html = `
+
+<div
+style="
+font-family:Arial;
+padding:20px;
+background:white;
+">
+
+<h1
+style="
+text-align:center;
+color:#123c69;
+">
+
+पवन तिवारी कैटर्स
+
+</h1>
+
+<p style="text-align:center">
+
+मीठा एवं भोजन के कुशल कारीगर किसी भी शुभ अवसर पर आवश्यकता हेतु संपर्क करें
+
+</p>
+
+<p style="text-align:center">
+
+ग्राम (कमासिन) तिवारी महमदपुर (बन)- प्रतापगढ़
+
+मो. 7985303237
+
+</p>
+
+<hr>
+
+`;
 
 
-    try {
+groups.forEach(
+group=>{
 
-        if (
-            navigator.share &&
-            navigator.canShare &&
-            navigator.canShare({ files: [file] })
-        ) {
+if(group.items.length===0)
+return;
 
-            await navigator.share({
+html += `
 
-                title: "पवन तिवारी कैटर्स बिल",
+<h2
+style="
+background:#123c69;
+color:white;
+padding:10px;
+">
 
-                text: "पवन तिवारी कैटर्स का बिल",
+${group.title}
 
-                files: [file]
+</h2>
 
-            });
+`;
 
-        } else {
+group.items.forEach(
+item=>{
 
-            const url =
-                URL.createObjectURL(generatedPDFBlob);
+html += `
 
-            const a =
-                document.createElement("a");
+<div
+style="
+display:flex;
+justify-content:space-between;
+border-bottom:1px solid #ddd;
+padding:7px;
+">
 
-            a.href = url;
+<span>
+${item.name}
+</span>
 
-            a.download =
-                "Pawan_Tiwari_Caters_Bill.pdf";
+<b>
+${item.value}
+</b>
 
-            a.click();
+</div>
 
-            URL.revokeObjectURL(url);
+`;
 
-            alert(
-                "इस browser में direct PDF sharing उपलब्ध नहीं है। PDF save हो गई है। अब इसे WhatsApp में attach कर सकते हैं।"
-            );
+});
 
-        }
+});
 
-    } catch(error) {
 
-        console.log(error);
+html += "</div>";
 
-    }
+
+const printWindow =
+window.open(
+"",
+"_blank"
+);
+
+printWindow.document.write(`
+
+<html>
+
+<head>
+
+<title>
+पवन तिवारी कैटर्स - बिल
+</title>
+
+</head>
+
+<body>
+
+${html}
+
+<script>
+
+window.onload=function(){
+
+window.print();
+
+};
+
+<\/script>
+
+</body>
+
+</html>
+
+`);
+
+printWindow.document.close();
 
 }
+
+
+/* =====================================================
+   BILL WHATSAPP
+===================================================== */
+
+function sendBillWhatsApp(){
+
+const groups=[
+
+{
+title:"पहला सामान",
+items:collectItems(
+firstItems,
+"f"
+)
+},
+
+{
+title:"सब्जियाँ",
+items:collectItems(
+vegetables,
+"v"
+)
+},
+
+{
+title:"बर्तन / सामान",
+items:collectItems(
+utensils,
+"u"
+)
+}
+
+];
+
+
+let message =
+"पवन तिवारी कैटर्स - बिल\n\n";
+
+
+groups.forEach(
+group=>{
+
+if(group.items.length===0)
+return;
+
+message +=
+"*"+group.title+"*\n";
+
+group.items.forEach(
+item=>{
+
+message +=
+item.name+
+" — "+
+item.value+
+"\n";
+
+});
+
+message += "\n";
+
+});
+
+
+window.location.href =
+"https://wa.me/917985303237?text="
++
+encodeURIComponent(message);
+
+}
+
+
+/* =====================================================
+   START WEBSITE
+===================================================== */
+
+createCategories();
+
+displayOrderMenu();
+
+displayPublicMenu();
+
+displayGallery();
+
+
+/* CREATE BILL */
+
+createBillItems(
+firstItems,
+"firstItems",
+"f"
+);
+
+createBillItems(
+vegetables,
+"vegetables",
+"v"
+);
+
+createBillItems(
+utensils,
+"utensils",
+"u"
+);
 
 </script>
 
 </body>
 </html>
+
+
+
